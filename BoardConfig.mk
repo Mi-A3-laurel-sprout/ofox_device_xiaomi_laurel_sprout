@@ -128,7 +128,7 @@ TW_NO_SCREEN_BLANK := true
 TW_EXCLUDE_APEX := true
 TW_EXCLUDE_TWRPAPP := true
 TW_HAS_EDL_MODE := true
-
+TW_FRAMERATE := 60
 TW_DEVICE_VERSION := Mi A3 OSS
 
 # Logcat
@@ -148,4 +148,4 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 2
 
 # include python, for ABX conversion
 TW_INCLUDE_PYTHON := true
-#    
+#
