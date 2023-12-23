@@ -65,9 +65,15 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
     	# OTA
     	export OF_KEEP_DM_VERITY=1
-    	export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
     	export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
     	export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
+
+	# Full Dynamic Partition size
+	export OF_DYNAMIC_FULL_SIZE=4693426176
+
+        # dynamic/retrofitted
+	export OF_DISABLE_OTA_MENU=1
+	export FOX_VARIANT="dynamic"
 
 	# Screen Settings
 	export OF_SCREEN_H=2400
