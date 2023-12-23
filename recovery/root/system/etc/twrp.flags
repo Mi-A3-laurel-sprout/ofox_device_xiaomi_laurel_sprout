@@ -3,15 +3,15 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # mount point     fstype     device                 device2                        flags
-/system		  ext4	             system				     flags=display="System";slotselect
-/vendor		  ext4	             vendor				     flags=display="Vendor";slotselect;logical
+/system		  erofs	             system				     flags=display="System";slotselect
+/vendor		  erofs	             vendor				     flags=display="Vendor";slotselect;logical
 /system_image	  emmc	             system				     flags=slotselect;backup=1;flashimg=1
 /vendor_image	  emmc	             vendor				     flags=slotselect;backup=1;flashimg=1
-/product	  ext4	             product				     flags=backup=1;display="Product";logical
+/product	  erofs	             product				     flags=backup=1;display="Product";logical
 /product_image	  emmc	             product				     flags=backup=1;display="Product Image";flashimg=1
-/system_ext	  ext4	             system_ext				     flags=backup=1;display="System_ext";logical
+/system_ext	  erofs	             system_ext				     flags=backup=1;display="System_ext";logical
 /system_ext_image emmc	             system_ext				     flags=backup=1;display="System_ext Image";flashimg=1
-/odm		  ext4	             odm				     flags=backup=1;display="Odm";logical
+/odm		  erofs	             odm				     flags=backup=1;display="Odm";logical
 /odm_image	  emmc               odm				     flags=backup=1;display="Odm Image";flashimg=1
 
 /bluetooth        emmc              /dev/block/bootdevice/by-name/bluetooth  flags=slotselect;backup=1;flashimg=1
