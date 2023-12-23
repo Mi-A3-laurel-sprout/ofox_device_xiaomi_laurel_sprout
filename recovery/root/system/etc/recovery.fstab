@@ -39,7 +39,7 @@ product							/product	          ext4	  ro,barrier=1,discard				     wait,slotse
 odm							/odm			  ext4    ro,barrier=1,discard				     wait,slotselect,avb,logical,first_stage_mount
 vendor							/vendor			  ext4	  ro,barrier=1,discard				     wait,slotselect,avb,logical,first_stage_mount
 /dev/block/by-name/metadata                             /metadata                 ext4    noatime,nosuid,nodev,discard                       wait,formattable,wrappedkey,data=journal,commit=1,first_stage_mount
-/dev/block/bootdevice/by-name/userdata                  /data                     f2fs    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt   latemount,wait,check,fileencryption=ice,wrappedkey,quota,reservedsize=128M
+/dev/block/bootdevice/by-name/userdata                  /data                     f2fs    noatime,nosuid,nodev,discard,reserve_root=32768,resgid=1065,fsync_mode=nobarrier,inlinecrypt   latemount,wait,check,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,reservedsize=128M,quota,checkpoint=fs
 
 # Need to have this entry in here even though the mount point itself is no longer needed.
 # The update_engine code looks for this entry in order to determine the boot device address
