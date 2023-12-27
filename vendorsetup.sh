@@ -63,6 +63,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     	export FOX_ENABLE_APP_MANAGER=0
     	export FOX_DISABLE_APP_MANAGER=1
 	export OF_ENABLE_FS_COMPRESSION=1
+        export OF_DEFAULT_KEYMASTER_VERSION=4.1
 
     	# OTA
     	export OF_KEEP_DM_VERITY=1
