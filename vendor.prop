@@ -7,3 +7,6 @@ ro.crypto.volume.options=::v2
 
 # keystore
 ro.hardware.keystore_desede=true
+keymaster_ver=4.1
+
+ro.boot.dynamic_partitions=true

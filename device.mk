@@ -16,11 +16,13 @@ PRODUCT_SOONG_NAMESPACES += \
 # A/B
 AB_OTA_PARTITIONS += \
     boot \
+    dtbo \
     odm \
+    product \
     system \
-    vendor \
+    system_ext \
     vbmeta \
-    dtbo
+    vendor
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -44,15 +46,14 @@ PRODUCT_PACKAGES_DEBUG += \
     bootctl \
     update_engine_client
 
-# Fastbootd
-TW_INCLUDE_FASTBOOTD := true
-PRODUCT_PACKAGES += \
-    fastbootd \
-    android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery
+# Casefolding
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
+# Props for a Successful Casefold Format 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.fastbootd.available=true
+    ro.crypto.dm_default_key.options_format.version=2 \
+    ro.crypto.volume.metadata.method=dm-default-key \
+    ro.crypto.volume.options=::v2 
 
 # Health Hal
 PRODUCT_PACKAGES += \
@@ -64,18 +65,30 @@ PRODUCT_PACKAGES += \
     update_verifier \
     update_engine_sideload
 
-# Retrofit Dynamic Partition
+# Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
-PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.boot.dynamic_partitions=true \
-	ro.boot.dynamic_partitions_retrofit=true
+# EROFS-utils
+PRODUCT_PACKAGES += \
+    erofs-utils
+
+# Fastbootd
+TW_INCLUDE_FASTBOOTD := true
+PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.0-impl-mock \
+    android.hardware.fastboot@1.0-impl-mock.recovery \
+    fastbootd
 
 # crypto
 PRODUCT_PACKAGES += \
     qcom_decrypt \
     qcom_decrypt_fbe
+
+# SHIPPING API
+PRODUCT_SHIPPING_API_LEVEL := 30
+
+# Default FS type
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
 # additional
 TARGET_RECOVERY_DEVICE_MODULES += \

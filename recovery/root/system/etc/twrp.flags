@@ -3,21 +3,27 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # mount point     fstype     device                 device2                        flags
-/system		  erofs	             system				     flags=display="System";slotselect
-/vendor		  erofs	             vendor				     flags=display="Vendor";slotselect;logical
+/system		  ext4	             system				     flags=display=system;logical;slotselect
+/system           erofs              system				     flags=display=system;logical;slotselect
+/system_ext       ext4               system_ext                              flags=display=system_ext;logical;slotselect
+/system_ext       erofs              system_ext                              flags=display=system_ext;logical;slotselect
+/product          ext4               product                                 flags=display=product;logical;slotselect
+/product          erofs              product                                 flags=display=product;logical;slotselect
+/odm              ext4               odm                                     flags=display=odm;logical;slotselect
+/odm              erofs              odm                                     flags=display=odm;logical;slotselect
+/vendor           ext4               vendor                                  flags=display=vendor;logical;slotselect
+/vendor           erofs              vendor                                  flags=display=vendor;logical;slotselect
+
 /system_image	  emmc	             system				     flags=slotselect;backup=1;flashimg=1
 /vendor_image	  emmc	             vendor				     flags=slotselect;backup=1;flashimg=1
-/product	  erofs	             product				     flags=backup=1;display="Product";logical
 /product_image	  emmc	             product				     flags=backup=1;display="Product Image";flashimg=1
-/system_ext	  erofs	             system_ext				     flags=backup=1;display="System_ext";logical
 /system_ext_image emmc	             system_ext				     flags=backup=1;display="System_ext Image";flashimg=1
-/odm		  erofs	             odm				     flags=backup=1;display="Odm";logical
 /odm_image	  emmc               odm				     flags=backup=1;display="Odm Image";flashimg=1
 
 /bluetooth        emmc              /dev/block/bootdevice/by-name/bluetooth  flags=slotselect;backup=1;flashimg=1
 /modem            emmc              /dev/block/bootdevice/by-name/modem      flags=slotselect;backup=1;flashimg=1
 /dtbo             emmc              /dev/block/bootdevice/by-name/dtbo       flags=slotselect;backup=1;display="Dtbo";flashimg=1
-/metadata	  ext4	            /dev/block/bootdevice/by-name/metadata   flags=display="Metadata";backup=1;wrappedkey
+/metadata	  ext4	            /dev/block/by-name/metadata              flags=display="Metadata";backup=1;wrappedkey
 /data             f2fs	            /dev/block/bootdevice/by-name/userdata   flags=fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0
 /misc             emmc              /dev/block/bootdevice/by-name/misc
 /persist          ext4              /dev/block/bootdevice/by-name/persist    flags=display="Persist"
@@ -30,3 +36,6 @@
 # Removable storage
 /usb-otg         auto              /dev/block/sdg1         /dev/block/sdg   flags=removable;storage;display="USB OTG"
 /sdcard1         auto              /dev/block/mmcblk0p1                     flags=display="MicroSD";storage;wipeingui;removable
+
+# System As Root (Needed for non-retrofit convert to retrofit)
+/system_root     ext4     /dev/block/bootdevice/by-name/system                           flags=display="System_Root"
