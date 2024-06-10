@@ -54,16 +54,16 @@ TARGET_OTA_ASSERT_DEVICE := laurel_sprout
 PRODUCT_PACKAGES += \
     android.hardware.boot@1.1-impl-qti \
     android.hardware.boot@1.1-impl-qti.recovery \
-    android.hardware.boot@1.1-service
+    android.hardware.boot@1.1-service \
+    bootctrl.trinket \
+    bootctrl.trinket.recovery
 
 PRODUCT_PACKAGES += \
-    bootctrl.trinket
+    libgptutils.trinket
 
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.trinket \
-    libgptutils \
-    libz \
-    libcutils
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl \
+    update_engine_client
 
 PRODUCT_PACKAGES += \
     cppreopts.sh \
